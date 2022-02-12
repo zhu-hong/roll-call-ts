@@ -21,6 +21,14 @@ const reset = () => {
 <template>
   <div id="TopTarget"></div>
   <main class="w-full min-w-md min-h-screen flex flex-col justify-start items-center py-10 children:(relative w-85 bg-gray-900 px-8 py-6 pt-8 shadow-md text-lg font-medium mb-6)">
+    <div class="!p-0">
+      <input v-model="mb.key" type="text"
+             class="w-full !p-3 !pr-10 !pl-5 bg-transparent text-white outline-none transition focus:(ring-2 ring-purple-600)">
+      <span class="absolute top-1/4 right-2 cursor-pointer transform scale-90 transition hover:(scale-110)"
+            v-show="mb.key.length"
+            @click="mb.resetKey()">❌</span>
+    </div>
+
     <div class="grid grid-cols-1 gap-2" v-show="mb.pandings.length">
       <div v-for="m of mb.pandings" :key="m.id"
            class="grid grid-cols-9 children:(py-2 text-center transition duration-300)">

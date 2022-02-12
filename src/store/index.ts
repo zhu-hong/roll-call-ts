@@ -118,11 +118,12 @@ export const useMbStore = defineStore('mb', {
     ]
 
     return {
+      key: '',
       members,
     }
   },
   getters: {
-    pandings: (state): IMember[] => state.members.filter((m) => m.state === STATES.PENDING),
+    pandings: (state): IMember[] => state.members.filter((m) => m.state === STATES.PENDING && m.name.startsWith(state.key)),
     arrives: (state): IMember[] => state.members.filter((m) => m.state === STATES.AEEIVE),
     leaves: (state): IMember[] => state.members.filter((m) => m.state === STATES.LEAVE),
     absents: (state): IMember[] => state.members.filter((m) => m.state === STATES.ABSENT),
@@ -130,6 +131,9 @@ export const useMbStore = defineStore('mb', {
   actions: {
     setState(payload: { id: string, state: STATES }) {
       this.members.find((m) => m.id === payload.id)!.state = payload.state
+    },
+    resetKey() {
+      this.key = ''
     },
   },
 })
