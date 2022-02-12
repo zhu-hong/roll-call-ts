@@ -12,7 +12,7 @@ defineProps<{
 <template>
   <div class="grid grid-cols-3 gap-0.5">
     <TransitionGroup name="grid">
-      <span v-for="m of stateGroupItem.members" :key="m.id" :class="`bg-${stateGroupItem.color}-700 cursor-pointer grid place-items-center py-2 transition duration-300 hover:(bg-${stateGroupItem.color}-600)`">
+      <span v-for="m of stateGroupItem.members" :key="m.id" :class="`bg-${stateGroupItem.color}-700 cursor-pointer grid place-items-center py-2 transition duration-300 hover:bg-${stateGroupItem.color}-600`">
         <span class="block w-75px h-30px text-center leading-30px truncate" 
         :title="m.name"
         @click="mb.setState({ id: m.id, state: STATES.PENDING })">{{ m.name }}</span>

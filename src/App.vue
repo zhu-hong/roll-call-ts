@@ -31,7 +31,7 @@ const reset = () => {
 
 <template>
   <div id="TopTarget"></div>
-  <main class="w-full min-w-md min-h-screen flex flex-col justify-start items-center py-10 pr-7px children:(relative w-85 bg-gray-900 px-8 py-6 pt-8 shadow-md text-lg font-medium mb-6)">
+  <main class="w-full min-w-md min-h-screen flex flex-col justify-start items-center py-10 pr-7px children:(relative w-85 bg-gray-900 px-8 py-6 pt-10 shadow-md text-lg font-medium mb-6)">
     <SearchInput />
 
     <Transition name="panel">
@@ -79,5 +79,6 @@ const reset = () => {
 }
 .panel-leave-active {
   position: absolute !important;
+  top: 200px;
 }
 </style>

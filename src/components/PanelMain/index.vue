@@ -10,7 +10,7 @@ const mb = useMbStore()
     <TransitionGroup name="list">
       <Item v-for="m of mb.pandings" :key="m.id" :member="m" />
     </TransitionGroup>
-    <span class="absolute -top-3 left-3 bg-black text-rose-400 px-4 py-1.5 text-base">{{ mb.pandings.length }}</span>
+    <span class="absolute -top-3 left-3 bg-black text-rose-400 px-4 py-1.5 text-base">{{ `${mb.pandings.length}&nbsp;&nbsp;🏇` }}</span>
   </div>
 </template>
 
