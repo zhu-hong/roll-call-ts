@@ -1,10 +1,10 @@
 import { defineStore } from 'pinia'
 import { nanoid } from 'nanoid'
-import { member, STATES } from '../types'
+import { IMember, STATES } from '../types'
 
 export const useMb = defineStore('mb', {
   state: () => {
-    const members: member[] = [
+    const members: IMember[] = [
       {
         id: nanoid(),
         name: '刘德华',

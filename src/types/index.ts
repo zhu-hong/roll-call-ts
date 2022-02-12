@@ -7,7 +7,7 @@ export enum STATES {
 }
 
 // 成员
-export interface member {
+export interface IMember {
   id: string,
   name: string,
   state: STATES,
