@@ -8,14 +8,6 @@ const mb = useMbStore()
 const memberStorage = localStorage.getItem('memberStorage')
 memberStorage && (mb.$state.members = JSON.parse(memberStorage))
 
-const reset = () => {
-  document.querySelector('#TopTarget')?.scrollIntoView({  behavior: 'smooth' })
-  mb.pandings.length !== mb.members.length && mb.$reset()
-  setTimeout(() => {
-    localStorage.removeItem('memberStorage')
-  }, 0)
-}
-
 watch(
   () => mb.members,
   (val) => {
@@ -25,6 +17,14 @@ watch(
     deep: true,
   },
 )
+
+const reset = () => {
+  document.querySelector('#TopTarget')?.scrollIntoView({  behavior: 'smooth' })
+  mb.pandings.length !== mb.members.length && mb.$reset()
+  setTimeout(() => {
+    localStorage.removeItem('memberStorage')
+  }, 0)
+}
 </script>
 
 <template>
@@ -38,21 +38,25 @@ watch(
             @click="mb.resetKey()">❌</span>
     </div>
 
-    <div class="grid grid-cols-1 gap-2" v-show="mb.pandings.length">
-      <div v-for="m of mb.pandings" :key="m.id"
-           class="grid grid-cols-9 children:(py-2 text-center transition duration-300)">
-        <span class="col-span-3 bg-green-400 cursor-default grid place-items-center">
-          <span class="block w-75px h-30px leading-30px truncate" :title="m.name">{{ m.name }}</span>
-        </span>
-        <span class="col-span-2 bg-blue-700 cursor-pointer hover:bg-blue-600"
-              @click="mb.setState({ id: m.id, state: STATES.AEEIVE })">到位</span>
-        <span class="col-span-2 bg-yellow-700 cursor-pointer hover:bg-yellow-600"
-              @click="mb.setState({ id: m.id, state: STATES.LEAVE })">请假</span>
-        <span class="col-span-2 bg-red-700 cursor-pointer hover:bg-red-600"
-              @click="mb.setState({ id: m.id, state: STATES.ABSENT })">缺勤</span>
+    <Transition mode="in-out" name="list">
+      <div class="grid grid-cols-1 gap-2" v-show="mb.pandings.length">
+        <TransitionGroup name="list">
+          <div v-for="m of mb.pandings" :key="m.id"
+              class="grid grid-cols-9 children:(py-2 text-center transition duration-300)">
+            <span class="col-span-3 bg-green-400 cursor-default grid place-items-center">
+              <span class="block w-75px h-30px leading-30px truncate" :title="m.name">{{ m.name }}</span>
+            </span>
+            <span class="col-span-2 bg-blue-700 cursor-pointer hover:bg-blue-600"
+                  @click="mb.setState({ id: m.id, state: STATES.AEEIVE })">到位</span>
+            <span class="col-span-2 bg-yellow-700 cursor-pointer hover:bg-yellow-600"
+                  @click="mb.setState({ id: m.id, state: STATES.LEAVE })">请假</span>
+            <span class="col-span-2 bg-red-700 cursor-pointer hover:bg-red-600"
+                  @click="mb.setState({ id: m.id, state: STATES.ABSENT })">缺勤</span>
+          </div>
+        </TransitionGroup>
+        <span class="absolute -top-3 left-3 bg-black text-rose-400 px-4 py-1.5 text-sm">{{ mb.pandings.length }}</span>
       </div>
-      <span class="absolute -top-3 left-3 bg-black text-rose-400 px-4 py-1.5 text-sm">{{ mb.pandings.length }}</span>
-    </div>
+    </Transition>
 
     <div class="grid grid-cols-3 gap-0.5" v-show="mb.arrives.length">
       <span v-for="m of mb.arrives" :key="m.id" class="bg-blue-700 cursor-pointer grid place-items-center py-2 transition duration-300 hover:(bg-blue-600)">
@@ -103,5 +107,16 @@ watch(
 ::-webkit-scrollbar-corner,
 ::-webkit-scrollbar-track {
   background: transparent;
+}
+
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.4s ease;
+}
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform-origin: top left;
+  transform: translateX(30%);
 }
 </style>
