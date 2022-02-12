@@ -25,7 +25,7 @@ const reset = () => {
       <div v-for="m of mb.pandings" :key="m.id"
            class="grid grid-cols-9 children:(py-2 text-center transition duration-300)">
         <span class="col-span-3 bg-green-400 cursor-default grid place-items-center">
-          <span class="block w-75px h-30px leading-30px overflow-hidden overflow-ellipsis whitespace-nowrap" :title="m.name">{{ m.name }}</span>
+          <span class="block w-75px h-30px leading-30px truncate" :title="m.name">{{ m.name }}</span>
         </span>
         <span class="col-span-2 bg-blue-700 cursor-pointer hover:bg-blue-600"
               @click="mb.setState({ id: m.id, state: STATES.AEEIVE })">到位</span>
@@ -39,7 +39,7 @@ const reset = () => {
 
     <div class="grid grid-cols-3 gap-0.5" v-show="mb.arrives.length">
       <span v-for="m of mb.arrives" :key="m.id" class="bg-blue-700 cursor-pointer grid place-items-center py-2 transition duration-300 hover:(bg-blue-600)">
-        <span class="block w-75px h-30px text-center leading-30px overflow-hidden overflow-ellipsis whitespace-nowrap" 
+        <span class="block w-75px h-30px text-center leading-30px truncate" 
         :title="m.name"
         @click="mb.setState({ id: m.id, state: STATES.PENDING })">{{ m.name }}</span>
       </span>
@@ -48,7 +48,7 @@ const reset = () => {
 
     <div class="grid grid-cols-3 gap-0.5" v-show="mb.leaves.length">
       <span v-for="m of mb.leaves" :key="m.id" class="bg-yellow-700 cursor-pointer grid place-items-center py-2 transition duration-300 hover:(bg-yellow-600)">
-        <span class="block w-75px h-30px text-center leading-30px overflow-hidden overflow-ellipsis whitespace-nowrap" 
+        <span class="block w-75px h-30px text-center leading-30px truncate" 
         :title="m.name"
         @click="mb.setState({ id: m.id, state: STATES.PENDING })">{{ m.name }}</span>
       </span>
@@ -57,7 +57,7 @@ const reset = () => {
 
     <div class="grid grid-cols-3 gap-0.5" v-show="mb.absents.length">
       <span v-for="m of mb.absents" :key="m.id" class="bg-red-700 cursor-pointer grid place-items-center py-2 transition duration-300 hover:(bg-red-600)">
-        <span class="block w-75px h-30px text-center leading-30px overflow-hidden overflow-ellipsis whitespace-nowrap" 
+        <span class="block w-75px h-30px text-center leading-30px truncate" 
         :title="m.name"
         @click="mb.setState({ id: m.id, state: STATES.PENDING })">{{ m.name }}</span>
       </span>
