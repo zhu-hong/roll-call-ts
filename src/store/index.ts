@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { nanoid } from 'nanoid'
 import { IMember, STATES } from '../types'
 
-export const useMb = defineStore('mb', {
+export const useMbStore = defineStore('mb', {
   state: () => {
     const members: IMember[] = JSON.parse(localStorage.getItem('memberStorage') as string) || [
       {

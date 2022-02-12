@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useMb } from './store'
+import { useMbStore } from './store'
 import { STATES } from './types'
 
-const mb = useMb()
+const mb = useMbStore()
 
 const reset = () => {
   document.querySelector('#TopTarget')?.scrollIntoView({  behavior: 'smooth' })
