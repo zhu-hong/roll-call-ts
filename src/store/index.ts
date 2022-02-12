@@ -122,9 +122,14 @@ export const useMb = defineStore('mb', {
     }
   },
   getters: {
-    pandings: (state): member[] => state.members.filter((m) => m.state === STATES.PENDING),
-    arrives: (state): member[] => state.members.filter((m) => m.state === STATES.AEEIVE),
-    leaves: (state): member[] => state.members.filter((m) => m.state === STATES.LEAVE),
-    absents: (state): member[] => state.members.filter((m) => m.state === STATES.ABSENT),
+    pandings: (state): IMember[] => state.members.filter((m) => m.state === STATES.PENDING),
+    arrives: (state): IMember[] => state.members.filter((m) => m.state === STATES.AEEIVE),
+    leaves: (state): IMember[] => state.members.filter((m) => m.state === STATES.LEAVE),
+    absents: (state): IMember[] => state.members.filter((m) => m.state === STATES.ABSENT),
+  },
+  actions: {
+    setState(payload: { id: string, state: STATES }) {
+      this.members.find((m) => m.id === payload.id)!.state = payload.state
+    },
   },
 })

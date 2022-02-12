@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useMb } from './store'
+import { STATES } from './types'
 
 const mb = useMb()
 </script>
@@ -12,9 +13,12 @@ const mb = useMb()
         <span class="col-span-3 bg-green-400 cursor-default grid place-items-center">
           <span class="block w-75px h-30px leading-30px overflow-hidden overflow-ellipsis whitespace-nowrap" :title="m.name">{{ m.name }}</span>
         </span>
-        <span class="col-span-2 bg-blue-700 cursor-pointer hover:bg-blue-600">到位</span>
-        <span class="col-span-2 bg-yellow-700 cursor-pointer hover:bg-yellow-600">请假</span>
-        <span class="col-span-2 bg-red-700 cursor-pointer hover:bg-red-600">缺勤</span>
+        <span class="col-span-2 bg-blue-700 cursor-pointer hover:bg-blue-600"
+              @click="mb.setState({ id: m.id, state: STATES.AEEIVE })">到位</span>
+        <span class="col-span-2 bg-yellow-700 cursor-pointer hover:bg-yellow-600"
+              @click="mb.setState({ id: m.id, state: STATES.LEAVE })">请假</span>
+        <span class="col-span-2 bg-red-700 cursor-pointer hover:bg-red-600"
+              @click="mb.setState({ id: m.id, state: STATES.ABSENT })">缺勤</span>
       </div>
     </div>
   </main>
