@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { nanoid } from 'nanoid'
 import { IMember, STATES } from '../types'
+import { getShortName } from '../utils'
 
 export const useMbStore = defineStore('mb', {
   state: () => {
@@ -123,7 +124,7 @@ export const useMbStore = defineStore('mb', {
     }
   },
   getters: {
-    pandings: (state): IMember[] => state.members.filter((m) => m.state === STATES.PENDING && m.name.startsWith(state.key)),
+    pandings: (state): IMember[] => state.members.filter((m) => m.state === STATES.PENDING && (m.name.includes(state.key) || getShortName(m.name).toLowerCase().startsWith(state.key.toLowerCase()))),
     arrives: (state): IMember[] => state.members.filter((m) => m.state === STATES.AEEIVE),
     leaves: (state): IMember[] => state.members.filter((m) => m.state === STATES.LEAVE),
     absents: (state): IMember[] => state.members.filter((m) => m.state === STATES.ABSENT),
