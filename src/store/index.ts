@@ -121,4 +121,10 @@ export const useMb = defineStore('mb', {
       members,
     }
   },
+  getters: {
+    pandings: (state): member[] => state.members.filter((m) => m.status === STATUS.PENDING),
+    arrives: (state): member[] => state.members.filter((m) => m.status === STATUS.AEEIVE),
+    leaves: (state): member[] => state.members.filter((m) => m.status === STATUS.LEAVE),
+    absents: (state): member[] => state.members.filter((m) => m.status === STATUS.ABSENT),
+  },
 })
