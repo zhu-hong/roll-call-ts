@@ -3,9 +3,15 @@ import { useMb } from './store'
 import { STATES } from './types'
 
 const mb = useMb()
+
+const reset = () => {
+  document.querySelector('#TopTarget')?.scrollIntoView({  behavior: 'smooth' })
+  mb.pandings.length !== mb.members.length && mb.$reset()
+}
 </script>
 
 <template>
+  <div id="TopTarget"></div>
   <main class="w-full min-w-md min-h-screen flex flex-col justify-start items-center py-10 children:(relative w-85 bg-gray-900 px-8 py-6 pt-8 shadow-md text-lg font-medium mb-6)">
     <div class="grid grid-cols-1 gap-2" v-show="mb.pandings.length">
       <div v-for="m of mb.pandings" :key="m.id"
@@ -51,7 +57,7 @@ const mb = useMb()
     </div>
 
     <button class="!bg-purple-800 !w-30 !mb-0 !py-2 font-light tracking-widest transition duration-300 hover:(!bg-purple-700) active:(!bg-purple-900)"
-            @click="mb.$reset()">重置</button>
+            @click="reset">重置</button>
   </main>
 </template>
 
