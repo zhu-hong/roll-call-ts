@@ -45,6 +45,9 @@ const mb = useMb()
         @click="mb.setState({ id: m.id, state: STATES.PENDING })">{{ m.name }}</span>
       </span>
     </div>
+
+    <button class="!bg-purple-700 !w-30 !mb-0 !py-2 font-light tracking-widest transition duration-300 hover:(!bg-purple-600)"
+            @click="mb.$reset()">重置</button>
   </main>
 </template>
 
