@@ -124,7 +124,7 @@ export const useMbStore = defineStore('mb', {
     }
   },
   getters: {
-    pandings: (state): IMember[] => state.members.filter((m) => m.state === STATES.PENDING && (m.name.includes(state.key) || getShortName(m.name).toLowerCase().startsWith(state.key.toLowerCase()))),
+    pandings: (state): IMember[] => state.members.filter((m) => m.state === STATES.PENDING && (m.name.toLowerCase().includes(state.key.toLowerCase()) || getShortName(m.name).toLowerCase().startsWith(state.key.toLowerCase()))),
     arrives: (state): IMember[] => state.members.filter((m) => m.state === STATES.AEEIVE),
     leaves: (state): IMember[] => state.members.filter((m) => m.state === STATES.LEAVE),
     absents: (state): IMember[] => state.members.filter((m) => m.state === STATES.ABSENT),
