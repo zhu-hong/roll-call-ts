@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { nanoid } from 'nanoid'
-import { IMember, STATES } from '../types'
+import { IMember, STATES, IStateGroutItem, STATETEXT, STATECOLOR } from '../types'
 import { getShortName } from '../utils'
 
 export const useMbStore = defineStore('mb', {
@@ -125,9 +125,28 @@ export const useMbStore = defineStore('mb', {
   },
   getters: {
     pandings: (state): IMember[] => state.members.filter((m) => m.state === STATES.PENDING && (m.name.toLowerCase().includes(state.key.toLowerCase()) || getShortName(m.name).toLowerCase().startsWith(state.key.toLowerCase()))),
-    arrives: (state): IMember[] => state.members.filter((m) => m.state === STATES.AEEIVE),
-    leaves: (state): IMember[] => state.members.filter((m) => m.state === STATES.LEAVE),
-    absents: (state): IMember[] => state.members.filter((m) => m.state === STATES.ABSENT),
+    stateGroup: (state): IStateGroutItem[] => {
+      return [
+        {
+          state: STATES.AEEIVE,
+          members: state.members.filter((m) => m.state === STATES.AEEIVE),
+          text: STATETEXT.AEEIVE,
+          color: STATECOLOR.AEEIVE,
+        },
+        {
+          state: STATES.LEAVE,
+          members: state.members.filter((m) => m.state === STATES.LEAVE),
+          text: STATETEXT.LEAVE,
+          color: STATECOLOR.LEAVE,
+        },
+        {
+          state: STATES.ABSENT,
+          members: state.members.filter((m) => m.state === STATES.ABSENT),
+          text: STATETEXT.ABSENT,
+          color: STATECOLOR.ABSENT,
+        },
+      ]
+    }
   },
   actions: {
     setState(payload: { id: string, state: STATES }) {
