@@ -1,5 +1,5 @@
 // 成员状态
-export enum STATUS {
+export enum STATES {
   'PENDING',
   'AEEIVE',
   'LEAVE',
@@ -10,5 +10,5 @@ export enum STATUS {
 export interface member {
   id: string,
   name: string,
-  status: STATUS,
+  state: STATES,
 }
