@@ -1,12 +1,9 @@
 <script setup lang="ts">
+import { watch } from 'vue'
 import { useMbStore } from './store'
 import { STATES } from './types'
 
 const mb = useMbStore()
-
-mb.$subscribe((_, state) => {
-  localStorage.setItem('memberStorage', JSON.stringify(state.members))
-})
 
 const memberStorage = localStorage.getItem('memberStorage')
 memberStorage && (mb.$state.members = JSON.parse(memberStorage))
@@ -14,8 +11,20 @@ memberStorage && (mb.$state.members = JSON.parse(memberStorage))
 const reset = () => {
   document.querySelector('#TopTarget')?.scrollIntoView({  behavior: 'smooth' })
   mb.pandings.length !== mb.members.length && mb.$reset()
-  localStorage.removeItem('memberStorage')
+  setTimeout(() => {
+    localStorage.removeItem('memberStorage')
+  }, 0)
 }
+
+watch(
+  () => mb.members,
+  (val) => {
+    localStorage.setItem('memberStorage', JSON.stringify(val))
+  },
+  {
+    deep: true,
+  },
+)
 </script>
 
 <template>
