@@ -7,7 +7,7 @@ const mb = useMb()
 
 <template>
   <main class="w-full min-w-md min-h-screen flex flex-col justify-start items-center py-10 children:(w-85 bg-gray-900 px-8 py-6 shadow-md text-lg font-medium mb-4)">
-    <div class="grid grid-cols-1 gap-2">
+    <div class="grid grid-cols-1 gap-2" v-show="mb.pandings.length">
       <div v-for="m of mb.pandings" :key="m.id"
            class="grid grid-cols-9 children:(py-2 text-center transition duration-300)">
         <span class="col-span-3 bg-green-400 cursor-default grid place-items-center">
@@ -22,7 +22,7 @@ const mb = useMb()
       </div>
     </div>
 
-    <div class="grid grid-cols-3 gap-0.5">
+    <div class="grid grid-cols-3 gap-0.5" v-show="mb.arrives.length">
       <span v-for="m of mb.arrives" :key="m.id" class="bg-blue-700 cursor-pointer grid place-items-center py-2 transition duration-300 hover:(bg-blue-600)">
         <span class="block w-75px h-30px text-center leading-30px overflow-hidden overflow-ellipsis whitespace-nowrap" 
         :title="m.name"
@@ -30,7 +30,7 @@ const mb = useMb()
       </span>
     </div>
 
-    <div class="grid grid-cols-3 gap-0.5">
+    <div class="grid grid-cols-3 gap-0.5" v-show="mb.leaves.length">
       <span v-for="m of mb.leaves" :key="m.id" class="bg-yellow-700 cursor-pointer grid place-items-center py-2 transition duration-300 hover:(bg-yellow-600)">
         <span class="block w-75px h-30px text-center leading-30px overflow-hidden overflow-ellipsis whitespace-nowrap" 
         :title="m.name"
@@ -38,7 +38,7 @@ const mb = useMb()
       </span>
     </div>
 
-    <div class="grid grid-cols-3 gap-0.5">
+    <div class="grid grid-cols-3 gap-0.5" v-show="mb.absents.length">
       <span v-for="m of mb.absents" :key="m.id" class="bg-red-700 cursor-pointer grid place-items-center py-2 transition duration-300 hover:(bg-red-600)">
         <span class="block w-75px h-30px text-center leading-30px overflow-hidden overflow-ellipsis whitespace-nowrap" 
         :title="m.name"
@@ -46,7 +46,7 @@ const mb = useMb()
       </span>
     </div>
 
-    <button class="!bg-purple-700 !w-30 !mb-0 !py-2 font-light tracking-widest transition duration-300 hover:(!bg-purple-600)"
+    <button class="!bg-purple-800 !w-30 !mb-0 !py-2 font-light tracking-widest transition duration-300 hover:(!bg-purple-700) active:(!bg-purple-900)"
             @click="mb.$reset()">重置</button>
   </main>
 </template>
