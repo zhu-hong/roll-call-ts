@@ -4,10 +4,17 @@ import { STATES } from './types'
 
 const mb = useMbStore()
 
+mb.$subscribe((_, state) => {
+  localStorage.setItem('memberStorage', JSON.stringify(state.members))
+})
+
+const memberStorage = localStorage.getItem('memberStorage')
+memberStorage && (mb.$state.members = JSON.parse(memberStorage))
+
 const reset = () => {
   document.querySelector('#TopTarget')?.scrollIntoView({  behavior: 'smooth' })
-  localStorage.removeItem('memberStorage')
   mb.pandings.length !== mb.members.length && mb.$reset()
+  localStorage.removeItem('memberStorage')
 }
 </script>
 
