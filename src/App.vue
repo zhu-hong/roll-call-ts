@@ -97,14 +97,16 @@ const reset = () => {
 .v-move,
 .v-enter-active,
 .v-leave-active {
-  transition: all 0.3s ease;
+  transition: all 0.3s linear;
 }
 .v-enter-from,
 .v-leave-to {
   opacity: 0;
-  transform: translateY(-30%);
+  transform-origin: top;
+  transform: scaleY(.3);
 }
 .v-leave-active {
   position: absolute;
+  bottom: 0;
 }
 </style>
