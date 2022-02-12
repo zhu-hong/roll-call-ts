@@ -8,6 +8,10 @@ export default defineConfig({
     vue({
       reactivityTransform: true,
     }),
-    WindiCSS(),
+    WindiCSS({
+      config: {
+        safelist: ['bg-blue-600', 'bg-blue-700', 'bg-yellow-600', 'bg-yellow-700', 'bg-red-600', 'bg-red-700'].join(' '),
+      },
+    }),
   ],
 })
