@@ -21,6 +21,30 @@ const mb = useMb()
               @click="mb.setState({ id: m.id, state: STATES.ABSENT })">缺勤</span>
       </div>
     </div>
+
+    <div class="grid grid-cols-3 gap-0.5">
+      <span v-for="m of mb.arrives" :key="m.id" class="bg-blue-700 cursor-pointer grid place-items-center py-2 transition duration-300 hover:(bg-blue-600)">
+        <span class="block w-75px h-30px text-center leading-30px overflow-hidden overflow-ellipsis whitespace-nowrap" 
+        :title="m.name"
+        @click="mb.setState({ id: m.id, state: STATES.PENDING })">{{ m.name }}</span>
+      </span>
+    </div>
+
+    <div class="grid grid-cols-3 gap-0.5">
+      <span v-for="m of mb.leaves" :key="m.id" class="bg-yellow-700 cursor-pointer grid place-items-center py-2 transition duration-300 hover:(bg-yellow-600)">
+        <span class="block w-75px h-30px text-center leading-30px overflow-hidden overflow-ellipsis whitespace-nowrap" 
+        :title="m.name"
+        @click="mb.setState({ id: m.id, state: STATES.PENDING })">{{ m.name }}</span>
+      </span>
+    </div>
+
+    <div class="grid grid-cols-3 gap-0.5">
+      <span v-for="m of mb.absents" :key="m.id" class="bg-red-700 cursor-pointer grid place-items-center py-2 transition duration-300 hover:(bg-red-600)">
+        <span class="block w-75px h-30px text-center leading-30px overflow-hidden overflow-ellipsis whitespace-nowrap" 
+        :title="m.name"
+        @click="mb.setState({ id: m.id, state: STATES.PENDING })">{{ m.name }}</span>
+      </span>
+    </div>
   </main>
 </template>
 
