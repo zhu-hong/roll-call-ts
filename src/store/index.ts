@@ -4,7 +4,7 @@ import { IMember, STATES } from '../types'
 
 export const useMb = defineStore('mb', {
   state: () => {
-    const members: IMember[] = [
+    const members: IMember[] = JSON.parse(localStorage.getItem('memberStorage') as string) || [
       {
         id: nanoid(),
         name: '刘德华',
@@ -130,6 +130,10 @@ export const useMb = defineStore('mb', {
   actions: {
     setState(payload: { id: string, state: STATES }) {
       this.members.find((m) => m.id === payload.id)!.state = payload.state
+
+      this.$subscribe((_, state) => {
+        localStorage.setItem('memberStorage', JSON.stringify(state.members))
+      })
     },
   },
 })

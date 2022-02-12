@@ -6,6 +6,7 @@ const mb = useMb()
 
 const reset = () => {
   document.querySelector('#TopTarget')?.scrollIntoView({  behavior: 'smooth' })
+  localStorage.removeItem('memberStorage')
   mb.pandings.length !== mb.members.length && mb.$reset()
 }
 </script>
