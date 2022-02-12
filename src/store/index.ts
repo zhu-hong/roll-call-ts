@@ -45,6 +45,76 @@ export const useMb = defineStore('mb', {
         name: '甄子丹',
         status: STATUS.PENDING,
       },
+      {
+        id: nanoid(),
+        name: '周星驰',
+        status: STATUS.PENDING,
+      },
+      {
+        id: nanoid(),
+        name: '王祖贤',
+        status: STATUS.PENDING,
+      },
+      {
+        id: nanoid(),
+        name: '郭采洁',
+        status: STATUS.PENDING,
+      },
+      {
+        id: nanoid(),
+        name: '许冠杰',
+        status: STATUS.PENDING,
+      },
+      {
+        id: nanoid(),
+        name: '金城武',
+        status: STATUS.PENDING,
+      },
+      {
+        id: nanoid(),
+        name: '周润发',
+        status: STATUS.PENDING,
+      },
+      {
+        id: nanoid(),
+        name: '张国荣',
+        status: STATUS.PENDING,
+      },
+      {
+        id: nanoid(),
+        name: '古天乐',
+        status: STATUS.PENDING,
+      },
+      {
+        id: nanoid(),
+        name: '张家辉',
+        status: STATUS.PENDING,
+      },
+      {
+        id: nanoid(),
+        name: '刘青云',
+        status: STATUS.PENDING,
+      },
+      {
+        id: nanoid(),
+        name: '吴镇宇',
+        status: STATUS.PENDING,
+      },
+      {
+        id: nanoid(),
+        name: '迪丽热巴',
+        status: STATUS.PENDING,
+      },
+      {
+        id: nanoid(),
+        name: 'Lionel Messi',
+        status: STATUS.PENDING,
+      },
+      {
+        id: nanoid(),
+        name: 'Cristiano Ronaldo',
+        status: STATUS.PENDING,
+      },
     ]
 
     return {
