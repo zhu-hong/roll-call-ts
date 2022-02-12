@@ -56,14 +56,17 @@ const reset = () => {
 
     <TransitionGroup>
       <div class="grid grid-cols-3 gap-0.5" v-for="g of mb.stateGroup" :key="g.state" v-show="g.members.length">
-        <TransitionGroup name="grid">
+        <TransitionGroup>
           <span v-for="m of g.members" :key="m.id" :class="`bg-${g.color}-700 cursor-pointer grid place-items-center py-2 transition duration-300 hover:(bg-${g.color}-600)`">
             <span class="block w-75px h-30px text-center leading-30px truncate" 
             :title="m.name"
             @click="mb.setState({ id: m.id, state: STATES.PENDING })">{{ m.name }}</span>
           </span>
         </TransitionGroup>
-        <span class="absolute -top-3 left-3 bg-black text-rose-400 px-4 py-1.5 text-sm">{{ g.members.length }}</span>
+        <span class="absolute -top-3 left-3 bg-black text-rose-400 px-4 py-1.5 text-sm">
+          {{ g.members.length }}
+          <span class="text-xs">{{ g.text }}</span>
+        </span>
       </div>
     </TransitionGroup>
 
@@ -91,20 +94,17 @@ const reset = () => {
   background: transparent;
 }
 
+.v-move,
 .v-enter-active,
 .v-leave-active {
-  transition: all 0.4s ease;
+  transition: all 0.3s ease;
 }
 .v-enter-from,
 .v-leave-to {
   opacity: 0;
-  transform-origin: top left;
-  transform: translateX(30%);
+  transform: translateY(-30%);
 }
-.grid-enter-from,
-.grid-leave-to {
-  opacity: 0;
-  transform-origin: top left;
-  transform: translateY(-100%);
+.v-leave-active {
+  position: absolute;
 }
 </style>
