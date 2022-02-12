@@ -6,7 +6,7 @@ const mb = useMb()
 </script>
 
 <template>
-  <main class="w-full min-w-md min-h-screen flex flex-col justify-start items-center py-10 children:(w-85 bg-gray-900 px-8 py-6 shadow-md text-lg font-medium mb-4)">
+  <main class="w-full min-w-md min-h-screen flex flex-col justify-start items-center py-10 children:(relative w-85 bg-gray-900 px-8 py-6 pt-8 shadow-md text-lg font-medium mb-6)">
     <div class="grid grid-cols-1 gap-2" v-show="mb.pandings.length">
       <div v-for="m of mb.pandings" :key="m.id"
            class="grid grid-cols-9 children:(py-2 text-center transition duration-300)">
@@ -20,6 +20,7 @@ const mb = useMb()
         <span class="col-span-2 bg-red-700 cursor-pointer hover:bg-red-600"
               @click="mb.setState({ id: m.id, state: STATES.ABSENT })">缺勤</span>
       </div>
+      <span class="absolute -top-3 left-3 bg-black text-rose-400 px-4 py-1.5 text-sm">{{ mb.pandings.length }}</span>
     </div>
 
     <div class="grid grid-cols-3 gap-0.5" v-show="mb.arrives.length">
@@ -28,6 +29,7 @@ const mb = useMb()
         :title="m.name"
         @click="mb.setState({ id: m.id, state: STATES.PENDING })">{{ m.name }}</span>
       </span>
+      <span class="absolute -top-3 left-3 bg-black text-rose-400 px-4 py-1.5 text-sm">{{ mb.arrives.length }}</span>
     </div>
 
     <div class="grid grid-cols-3 gap-0.5" v-show="mb.leaves.length">
@@ -36,6 +38,7 @@ const mb = useMb()
         :title="m.name"
         @click="mb.setState({ id: m.id, state: STATES.PENDING })">{{ m.name }}</span>
       </span>
+      <span class="absolute -top-3 left-3 bg-black text-rose-400 px-4 py-1.5 text-sm">{{ mb.leaves.length }}</span>
     </div>
 
     <div class="grid grid-cols-3 gap-0.5" v-show="mb.absents.length">
@@ -44,6 +47,7 @@ const mb = useMb()
         :title="m.name"
         @click="mb.setState({ id: m.id, state: STATES.PENDING })">{{ m.name }}</span>
       </span>
+      <span class="absolute -top-3 left-3 bg-black text-rose-400 px-4 py-1.5 text-sm">{{ mb.absents.length }}</span>
     </div>
 
     <button class="!bg-purple-800 !w-30 !mb-0 !py-2 font-light tracking-widest transition duration-300 hover:(!bg-purple-700) active:(!bg-purple-900)"
