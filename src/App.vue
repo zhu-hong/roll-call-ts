@@ -6,8 +6,8 @@ const mb = useMb()
 </script>
 
 <template>
-  <main class="w-full min-w-md min-h-screen flex flex-col justify-start items-center py-10 children:(w-85 bg-gray-900 px-8 py-6 shadow-md text-lg font-semibold)">
-    <div class="grid grid-cols-1 gap-2 mb-4">
+  <main class="w-full min-w-md min-h-screen flex flex-col justify-start items-center py-10 children:(w-85 bg-gray-900 px-8 py-6 shadow-md text-lg font-medium mb-4)">
+    <div class="grid grid-cols-1 gap-2">
       <div v-for="m of mb.pandings" :key="m.id"
            class="grid grid-cols-9 children:(py-2 text-center transition duration-300)">
         <span class="col-span-3 bg-green-400 cursor-default grid place-items-center">
