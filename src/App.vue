@@ -1,22 +1,37 @@
 <script setup lang="ts">
+import { useMb } from './store'
+
+const mb = useMb()
 </script>
 
 <template>
-  <main class="w-full min-w-2xl min-h-screen"></main>
+  <main class="w-full min-w-md min-h-screen flex flex-col justify-start items-center py-10">
+    <div class="w-85 bg-gray-900 px-8 py-6 grid grid-cols-1 gap-2 shadow-md text-lg">
+      <div v-for="m of mb.members" :key="m.id" 
+           class="grid grid-cols-9 children:(py-2 font-semibold text-center transition duration-300)">
+        <span class="col-span-3 bg-green-400 cursor-default grid place-items-center">
+          <span class="block w-75px h-30px leading-30px overflow-hidden overflow-ellipsis whitespace-nowrap" :title="m.name">{{ m.name }}</span>
+        </span>
+        <span class="col-span-2 bg-blue-700 cursor-pointer hover:bg-blue-600">到位</span>
+        <span class="col-span-2 bg-yellow-700 cursor-pointer hover:bg-yellow-600">请假</span>
+        <span class="col-span-2 bg-red-700 cursor-pointer hover:bg-red-600">旷</span>
+      </div>
+    </div>
+  </main>
 </template>
 
 <style>
 ::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 7px;
+  height: 7px;
   background-color: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  @apply bg-gray-500;
+  @apply bg-dark-700;
   border-radius: 5px;
 
   &:hover {
-    @apply bg-gray-600;
+    @apply bg-dark-900;
   }
 }
 ::-webkit-scrollbar-corner,
