@@ -34,11 +34,11 @@ const reset = () => {
   <main class="w-full min-w-md min-h-screen flex flex-col justify-start items-center py-10 pr-7px children:(relative w-85 bg-gray-900 px-8 py-6 pt-8 shadow-md text-lg font-medium mb-6)">
     <SearchInput />
 
-    <Transition>
+    <Transition name="panel">
       <PanelMain />
     </Transition>
 
-    <TransitionGroup>
+    <TransitionGroup name="panel">
       <PanelState v-for="g of mb.stateGroup" :key="g.state" v-show="g.members.length" :stateGroupItem="g" />
     </TransitionGroup>
 
@@ -66,19 +66,18 @@ const reset = () => {
   background: transparent;
 }
 
-.v-move,
-.v-enter-active,
-.v-leave-active {
-  transition: all 0.3s linear;
+.panel-move,
+.panel-enter-active,
+.panel-leave-active {
+  transition: all 0.3s ease-in-out;
 }
-.v-enter-from,
-.v-leave-to {
+.panel-enter-from,
+.panel-leave-to {
   opacity: 0;
-  transform-origin: top;
-  transform: scaleY(.3);
+  transform-origin: top center;
+  transform: scaleY(0);
 }
-.v-leave-active {
-  position: absolute;
-  bottom: 0;
+.panel-leave-active {
+  position: absolute !important;
 }
 </style>

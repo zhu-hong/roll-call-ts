@@ -11,7 +11,7 @@ defineProps<{
 
 <template>
   <div class="grid grid-cols-3 gap-0.5">
-    <TransitionGroup>
+    <TransitionGroup name="grid">
       <span v-for="m of stateGroupItem.members" :key="m.id" :class="`bg-${stateGroupItem.color}-700 cursor-pointer grid place-items-center py-2 transition duration-300 hover:(bg-${stateGroupItem.color}-600)`">
         <span class="block w-75px h-30px text-center leading-30px truncate" 
         :title="m.name"
@@ -24,3 +24,19 @@ defineProps<{
     </span>
   </div>
 </template>
+
+<style>
+.grid-move,
+.grid-enter-active,
+.grid-leave-active {
+  transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
+}
+.grid-enter-from,
+.grid-leave-to {
+  opacity: 0;
+  transform: translateY(-100%);
+}
+.grid-leave-active {
+  position: absolute;
+}
+</style>
