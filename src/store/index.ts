@@ -4,7 +4,6 @@ import { IMember, STATES } from '../types'
 
 export const useMbStore = defineStore('mb', {
   state: () => {
-    console.log('init state')
     const members: IMember[] = [
       {
         id: nanoid(),
@@ -130,7 +129,6 @@ export const useMbStore = defineStore('mb', {
   },
   actions: {
     setState(payload: { id: string, state: STATES }) {
-      console.log('setState')
       this.members.find((m) => m.id === payload.id)!.state = payload.state
     },
   },
